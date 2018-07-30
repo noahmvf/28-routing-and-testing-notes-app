@@ -7,6 +7,7 @@ const defaultState = {
   name: '',
   amount: 0,
   date: '',
+  category: '',
   description: '',
   editing: false,
 };
@@ -50,6 +51,13 @@ export default class ExpenseForm extends React.Component {
           step="0.01"
           name="cost"
           placeholder="enter an amount"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <input
+          type="date"
+          name="date"
+          placeholder="date"
           value={this.state.value}
           onChange={this.handleChange}
         />

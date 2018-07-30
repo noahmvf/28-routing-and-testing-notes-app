@@ -7,7 +7,7 @@ export default class Modal extends React.Component {
     const showHiddenClassName = this.props.show ? 'modal display-block' : 'modal display-none';
     
     return (
-      <div className={showHiddenClassName} data-cy="modal">
+      <div className={showHiddenClassName}>
         <main className="modal-main">
           <button onClick={this.props.handleClose} className="close-btn">X</button>
           { this.props.children }

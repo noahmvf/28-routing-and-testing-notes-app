@@ -10,7 +10,7 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <BrowserRouter>
-          <div className="note-container">
+          <div className="expense-container">
             <header>
               <h1>Expense Tracker</h1>
               <nav>
@@ -23,7 +23,7 @@ export default class App extends React.Component {
             <Route 
               exact
               path="/"
-              component={() => <h4>You must only create notes that pertain to medieval times</h4>}
+              component={() => <h4>You must only create expenses that pertain to medieval times</h4>}
             />
             <Route 
               exact
