@@ -20,7 +20,7 @@ describe('Dashboard testing', () => {
   });
 
   test('Adding a new expense to the state', () => {
-    const mockExpenses = [{ title: 'fake', description: 'fake description', _id: '1234' }];
+    const mockExpenses = [{ name: 'fake', description: 'fake description', _id: '1234' }];
     mountedDashboard.setState({ expenses: mockExpenses });
     expect(mountedDashboard.state('expenses')).toEqual(mockExpenses);
     expect(mountedDashboard.state('expenses')).toHaveLength(1);

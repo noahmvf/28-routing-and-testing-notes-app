@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './note-form.scss';
+import './expense-form.scss';
 
 const defaultState = {
-  title: '',
+  name: '',
+  amount: 0,
+  date: '',
   description: '',
   editing: false,
 };
 
-export default class NoteForm extends React.Component {
+export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = defaultState;
@@ -17,7 +19,7 @@ export default class NoteForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.handleAddNote(this.state);
+    this.props.handleAddExpense(this.state);
     this.setState(defaultState);
   }
 
@@ -29,18 +31,27 @@ export default class NoteForm extends React.Component {
   }
 
   render() {
-    const createOrUpdate = this.props.note ? 'Update Note' : 'Create Note';
-    const title = this.props.note ? 'updateTitle' : 'title';
-    const description = this.props.note ? 'updateDescription' : 'description';
+    const createOrUpdate = this.props.expense ? 'Update Expense' : 'Create Expense';
+    const name = this.props.expense ? 'updateName' : 'name';
+    const description = this.props.expense ? 'updateDescription' : 'description';
     return (
-      <form onSubmit={ this.handleSubmit } data-cy="note-form">
+      <form onSubmit={ this.handleSubmit } data-cy="expense-form">
         <input 
           type="text"
-          name="title"
-          placeholder="title"
-          value={ this.state.title }
+          name="name"
+          placeholder="name"
+          value={ this.state.name }
           onChange={ this.handleChange }
-          data-cy={title}
+          data-cy={name}
+        />
+        <input
+          type="number"
+          min="0.00" 
+          step="0.01"
+          name="cost"
+          placeholder="enter an amount"
+          value={this.state.value}
+          onChange={this.handleChange}
         />
         <input 
           type="text"
@@ -50,14 +61,14 @@ export default class NoteForm extends React.Component {
           onChange={ this.handleChange }
           data-cy={description}
         />
-        <button type="submit" data-cy="note-form-submit">{createOrUpdate}</button>
+        <button type="submit" data-cy="expense-form-submit">{createOrUpdate}</button>
       </form>
     );
   }
 }
 
-NoteForm.propTypes = {
-  handleAddNote: PropTypes.func,
+ExpenseForm.propTypes = {
+  handleAddExpense: PropTypes.func,
   handleComplete: PropTypes.func,
-  note: PropTypes.object,
+  expense: PropTypes.object,
 };

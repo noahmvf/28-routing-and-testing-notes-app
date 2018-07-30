@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component {
   }
 
   handleAddExpense = (expense) => {
-    if (expense.title === '') {
+    if (expense.name === '') {
       return this.setState({ error: true });
     }
 
@@ -70,7 +70,7 @@ export default class Dashboard extends React.Component {
       <section className="dashboard">
         <ExpenseForm handleAddExpense = { this.handleAddExpense } />
         { 
-          this.state.error && <h2 className="error">You must enter a title to the expense.</h2>
+          this.state.error && <h2 className="error">You must enter a name to the expense.</h2>
         }
         { this.handleExpenses() }
       </section>

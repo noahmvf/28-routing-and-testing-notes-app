@@ -15,7 +15,7 @@ export default class ExpenseItem extends React.Component {
     };
     return (
       <div className="expense-item" data-cy="expense-item" onClick={showModal}>
-      <strong className="expense-title">{expense.title}</strong>
+      <strong className="expense-name">{expense.name}</strong>
       <p className="expense-description">{expense.description}</p>
       <button
           className="delete-button"
@@ -27,7 +27,7 @@ export default class ExpenseItem extends React.Component {
           show={expense.editing}
           handleClose={hideModal}
         >
-          <h3>Editing {expense.title}</h3>
+          <h3>Editing {expense.name}</h3>
           <ExpenseForm 
             handleComplete={updateAndClose}
             expense={expense}
