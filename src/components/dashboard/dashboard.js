@@ -1,61 +1,61 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import NoteForm from '../note-form/note-form';
+import ExpenseForm from '../expense-form/expense-form';
 import './dashboard.scss';
-import NoteItem from '../note-item/note-item';
+import ExpenseItem from '../expense-item/expense-item';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: [],
+      expenses: [],
       error: null,
     };
   }
 
-  handleAddNote = (note) => {
-    if (note.title === '') {
+  handleAddExpense = (expense) => {
+    if (expense.title === '') {
       return this.setState({ error: true });
     }
 
-    note.createdOn = new Date();
-    note._id = uuid();
+    expense.createdOn = new Date();
+    expense._id = uuid();
     return this.setState((previousState) => {
       return {
-        notes: [...previousState.notes, note],
+        expenses: [...previousState.expenses, expense],
         error: null,
       };
     });
   }
 
-  handleRemoveNote = (noteToRemove) => {
+  handleRemoveExpense = (expenseToRemove) => {
     this.setState((previousState) => {
       return {
-        notes: previousState.notes.filter(note => note._id !== noteToRemove._id),
+        expenses: previousState.expenses.filter(expense => expense._id !== expenseToRemove._id),
       };
     });
   }
 
-  handleUpdateNote = (noteToUpdate) => {
+  handleUpdateExpense = (expenseToUpdate) => {
     return this.setState((previousState) => {
       return {
-        notes: previousState.notes.map(note => (note._id === noteToUpdate._id ? noteToUpdate : note)),
+        expenses: previousState.expenses.map(expense => (expense._id === expenseToUpdate._id ? expenseToUpdate : expense)),
       };
     });
   }
 
-  handleNotes = () => {
+  handleExpenses = () => {
     return (
-      <ul className = "note-list">
+      <ul className = "expense-list">
         {
-          this.state.notes.map((note) => {
+          this.state.expenses.map((expense) => {
             return (
-              <li key={note._id}>
-                <NoteItem
-                  note={note}
-                  handleRemoveNote={this.handleRemoveNote}
-                  handleUpdateNote={this.handleUpdateNote}
+              <li key={expense._id}>
+                <ExpenseItem
+                  expense={expense}
+                  handleRemoveExpense={this.handleRemoveExpense}
+                  handleUpdateExpense={this.handleUpdateExpense}
                   />
               </li>
             );
@@ -68,11 +68,11 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <section className="dashboard">
-        <NoteForm handleAddNote = { this.handleAddNote } />
+        <ExpenseForm handleAddExpense = { this.handleAddExpense } />
         { 
-          this.state.error && <h2 className="error">You must enter a title to the note.</h2>
+          this.state.error && <h2 className="error">You must enter a title to the expense.</h2>
         }
-        { this.handleNotes() }
+        { this.handleExpenses() }
       </section>
     );
   }

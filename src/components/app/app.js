@@ -12,7 +12,7 @@ export default class App extends React.Component {
         <BrowserRouter>
           <div className="note-container">
             <header>
-              <h1>Medieval Note Creator</h1>
+              <h1>Expense Tracker</h1>
               <nav>
                 <ul>
                   <li><Link to="/">Home</Link></li>

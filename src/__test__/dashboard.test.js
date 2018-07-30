@@ -16,13 +16,13 @@ describe('Dashboard testing', () => {
   });
 
   test('Test for initial state', () => {
-    expect(mountedDashboard.state('notes')).toEqual([]);
+    expect(mountedDashboard.state('expenses')).toEqual([]);
   });
 
-  test('Adding a new note to the state', () => {
-    const mockNotes = [{ title: 'fake', description: 'fake description', _id: '1234' }];
-    mountedDashboard.setState({ notes: mockNotes });
-    expect(mountedDashboard.state('notes')).toEqual(mockNotes);
-    expect(mountedDashboard.state('notes')).toHaveLength(1);
+  test('Adding a new expense to the state', () => {
+    const mockExpenses = [{ title: 'fake', description: 'fake description', _id: '1234' }];
+    mountedDashboard.setState({ expenses: mockExpenses });
+    expect(mountedDashboard.state('expenses')).toEqual(mockExpenses);
+    expect(mountedDashboard.state('expenses')).toHaveLength(1);
   });
 });
